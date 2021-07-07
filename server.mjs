@@ -12,10 +12,10 @@ const scratch = {}; // used for shell interaction
 // res.redirect("/new-thing")
 
 if(__dirname[0] == '/') {
-    __dirname = __dirname.slice(1);
+    // __dirname = __dirname.slice(1);
 }
 
-console.log(__dirname);
+console.log("Starting up at: ", __dirname);
 
 const HTTP_STATUS = {
     BAD_REQUEST: 400,
@@ -33,7 +33,11 @@ app.use(express.urlencoded({
 const clientDir = __dirname + "/public";
 app.get("/:type/:file", function (req, res) {
     let { type, file } = req.params;
-    res.sendFile(clientDir + "/images/" + type + "/" + file);
+    console.log("REQUEST ATTEMPT");
+    console.log("__dirname : ", __dirname);
+    console.log("clientDir : ", clientDir);
+    console.log("red_file  : ", "/app/images/" + type + "/" + file);
+    res.sendFile("/app/images/" + type + "/" + file);
 });
 
 const readBodyData = async function (req, res, next) {
