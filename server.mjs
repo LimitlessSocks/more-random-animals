@@ -5,6 +5,8 @@ import bcrypt from "bcrypt";
 import repl from "repl";
 import { spawn } from "child_process";
 import bodyParser from "body-parser";
+import util from "util";
+const readdir = util.promisify(fs.readdir);
 
 const scratch = {}; // used for shell interaction
 
@@ -22,6 +24,7 @@ console.log("Starting up at: ", __dirname);
 const HTTP_STATUS = {
     BAD_REQUEST: 400,
     FORBIDDEN: 403,
+    NOT_FOUND: 404,
     INTERNAL_SERVICE_ERROR: 500,
     NOT_IMPLEMENTED: 501,
 };
@@ -32,10 +35,19 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+const SERVE_DOMAINS = [ "gatr" ];
+
 const clientDir = __dirname + "/public";
 app.get("/:type/:file", function (req, res) {
     let { type, file } = req.params;
-    res.sendFile(__dirname + "/public/images/" + type + "/" + file);
+    if(SERVE_DOMAINS.indexOf(type) !== -1) {
+        res.sendFile(__dirname + "/public/images/" + type + "/" + file);
+    }
+    else {
+        res.status(HTTP_STATUS.NOT_FOUND).send({
+            message: "The requested asset domain '" + type + "' does not exist."
+        });
+    }
 });
 
 const readBodyData = async function (req, res, next) {
@@ -48,13 +60,29 @@ const readBodyData = async function (req, res, next) {
     });
 };
 
-app.get("/gatr", async function (req, res, next) {
-    let i = Math.random() < 0.5 ? 1 : 2;
-    res.setHeader('Content-Type', 'application/json');
-    res.end(JSON.stringify({
-        url: "https://more-random-animals.herokuapp.com/gatr/000" + i + ".jpg",
-    }));
-});
+const IMAGE_NAME_WIDTH = 4;
+for(let domain of SERVE_DOMAINS) {
+    let maxCount = NaN;
+    
+    try {
+        let files = await readdir(path.join(__dirname, "/public/images/", domain));
+        maxCount = files.length;
+    }
+    catch(err) {
+        console.error("Error reading all files for domain '" + domain + "'");
+        console.error(err);
+    }
+    console.log(domain.padEnd(10), ":", maxCount);
+    
+    app.get("/" + domain, async function (req, res, next) {
+        let rand = 1 + Math.floor(Math.random() * maxCount);
+        let name = rand.toString().padStart(IMAGE_NAME_WIDTH, "0") + ".jpg";
+        res.setHeader("Content-Type", "application/json");
+        res.end(JSON.stringify({
+            url: "https://more-random-animals.herokuapp.com/gatr/" + name,
+        }));
+    });
+}
 
 // app.post("/test", readBodyData, async function (body, req, res, next) {
     // console.log("DATA:", body);
