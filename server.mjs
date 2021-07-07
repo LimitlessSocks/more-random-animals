@@ -30,9 +30,10 @@ app.use(express.urlencoded({
     extended: true
 }));
 
+const clientDir = __dirname + "/public";
 app.get("/:type/:file", function (req, res) {
     let { type, file } = req.params;
-    res.sendFile(__dirname + "/images/" + type + "/" + file);
+    res.sendFile(clientDir + "/images/" + type + "/" + file);
 });
 
 const readBodyData = async function (req, res, next) {
@@ -58,7 +59,6 @@ app.get("/gatr", async function (req, res, next) {
     // res.send((Math.random() * 100 | 0).toString());
 // });
 
-const clientDir = __dirname + "/client";
 app.use(express.static(
     clientDir,
     { extensions: ["html"] }
