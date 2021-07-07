@@ -6,13 +6,15 @@ import repl from "repl";
 import { spawn } from "child_process";
 import bodyParser from "body-parser";
 
-let __dirname = path.dirname(new URL(import.meta.url).pathname);
 const scratch = {}; // used for shell interaction
+
+const isLocal = process.argv[2] === "l";
+let __dirname = isLocal ? path.dirname(new URL(import.meta.url).pathname) : "/app";
 
 // res.redirect("/new-thing")
 
-if(__dirname[0] == '/') {
-    // __dirname = __dirname.slice(1);
+if(__dirname[0] == '/' && isLocal) {
+    __dirname = __dirname.slice(1);
 }
 
 console.log("Starting up at: ", __dirname);
@@ -33,11 +35,7 @@ app.use(express.urlencoded({
 const clientDir = __dirname + "/public";
 app.get("/:type/:file", function (req, res) {
     let { type, file } = req.params;
-    // console.log("REQUEST ATTEMPT");
-    // console.log("__dirname : ", __dirname);
-    // console.log("clientDir : ", clientDir);
-    // console.log("red_file  : ", "/app/public/images/" + type + "/" + file);
-    res.sendFile("/app/public/images/" + type + "/" + file);
+    res.sendFile(__dirname + "/public/images/" + type + "/" + file);
 });
 
 const readBodyData = async function (req, res, next) {
@@ -74,7 +72,8 @@ let server = app.listen(PORT, () => {
     console.log(server.address());
     let { address, port } = server.address();
     console.log("Listening at http://%s:%s", address, port);
-    if(process.argv[2] != "i") return;
+    
+    if(!isLocal) return;
     console.log("Launching in interactive mode");
     let instance = repl.start({
         prompt: "server> ",
