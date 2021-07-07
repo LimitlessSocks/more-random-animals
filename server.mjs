@@ -30,8 +30,9 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-app.get("/gatr/:file", function (req, res) {
-    
+app.get("/:type/:file", function (req, res) {
+    let { type, file } = req.params;
+    res.sendFile(__dirname + "/images/" + type + "/" + file);
 });
 
 const readBodyData = async function (req, res, next) {
@@ -44,9 +45,11 @@ const readBodyData = async function (req, res, next) {
     });
 };
 
-app.post("/gatr", async function (req, res, next) {
-    res.send(JSON.stringify({
-        url: "",
+app.get("/gatr", async function (req, res, next) {
+    let i = Math.random() < 0.5 ? 1 : 2;
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({
+        url: "https://more-random-animals.herokuapp.com/gatr/000" + i + ".jpg",
     }));
 });
 
