@@ -33,11 +33,11 @@ app.use(express.urlencoded({
 const clientDir = __dirname + "/public";
 app.get("/:type/:file", function (req, res) {
     let { type, file } = req.params;
-    console.log("REQUEST ATTEMPT");
-    console.log("__dirname : ", __dirname);
-    console.log("clientDir : ", clientDir);
-    console.log("red_file  : ", "/app/images/" + type + "/" + file);
-    res.sendFile("/app/images/" + type + "/" + file);
+    // console.log("REQUEST ATTEMPT");
+    // console.log("__dirname : ", __dirname);
+    // console.log("clientDir : ", clientDir);
+    // console.log("red_file  : ", "/app/public/images/" + type + "/" + file);
+    res.sendFile("/app/public/images/" + type + "/" + file);
 });
 
 const readBodyData = async function (req, res, next) {
