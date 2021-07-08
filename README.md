@@ -1,5 +1,7 @@
-# Launching
+# more-random-animals
+## An API by Sock
+All commands return a JSON parsable string of the form `{ url: "string" }`. Available requests, made at `https://more-random-animals.herokuapp.com/<domain>`: 
 
-```
-git push heroku main
-```
+* `/gatr` - Random picture of an alligator
+* `/snek` - Random picture of a beautiful snake
+* `/capy` - Random picture of a capybara

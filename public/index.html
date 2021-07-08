@@ -2,11 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Home</title>
+    <title>more-random-animals</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Raleway:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        html {
+            font-family: "Raleway", sans-serif;
+            background: #222;
+            color: #9bf;
+            line-height: 1.6em;
+        }
+        code, pre {
+            font-family: "PT Mono", monospace;
+        }
+        code {
+            padding: 3px;
+            background: #335;
+            border-radius: 5px;
+        }
+        a {
+            color: #9ff;
+        }
+        a:visited {
+            color: #7dd;
+        }
+    </style>
 </head>
 <body>
+    <h1>more-random-animals</h1>
+    <h2>An API by Sock</h2>
+    <a href="https://github.com/LimitlessSocks/more-random-animals">GitHub</a>
     <p>
-        You should not be seeing this.
+        All commands return a JSON parsable string of the form <code>{ url: "string" }</code>. Ever expanding. Available requests, made at <code>https://more-random-animals.herokuapp.com/&lt;domain&gt;</code>:
     </p>
+    <ul>
+        <li><code>/gatr</code> - Random picture of an alligator</li>
+        <li><code>/snek</code> - Random picture of a beautiful snake</li>
+        <li><code>/capy</code> - Random picture of a capybara</li>
+    </ul>
 </body>
 </html>
