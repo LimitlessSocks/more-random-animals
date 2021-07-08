@@ -33,7 +33,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-const SERVE_DOMAINS = [ "gatr", "snek" ];
+const SERVE_DOMAINS = [ "gatr", "snek", "capy" ];
 
 const clientDir = __dirname + "/public";
 app.get("/:type/:file", function (req, res) {
