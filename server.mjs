@@ -34,19 +34,7 @@ app.use(express.urlencoded({
 }));
 
 const SERVE_DOMAINS = [ "gatr", "snek", "capy", "fish" ];
-
 const clientDir = __dirname + "/public";
-app.get("/:type/:file", function (req, res) {
-    let { type, file } = req.params;
-    if(SERVE_DOMAINS.indexOf(type) !== -1) {
-        res.sendFile(__dirname + "/public/images/" + type + "/" + file);
-    }
-    else {
-        res.status(HTTP_STATUS.NOT_FOUND).send({
-            message: "The requested asset domain '" + type + "' does not exist."
-        });
-    }
-});
 
 const readBodyData = async function (req, res, next) {
     let body = "";
@@ -80,11 +68,15 @@ for(let domain of SERVE_DOMAINS) {
             url: "https://more-random-animals.herokuapp.com/" + domain + "/" + name,
         }));
     });
+    app.get("/" + domain + "/:file", function (req, res) {
+        let { file } = req.params;
+        res.sendFile(__dirname + "/public/images/" + domain + "/" + file);
+    });
 }
 
 app.use(express.static(
     clientDir,
-    { extensions: ["html"] }
+    { extensions: ["html", "css", "js"] }
 ));
 
 

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Mono&family=Raleway:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+
+:root {
+    --text-color: #9bf;
+    --bg-color: #222;
+    --inline-bg-color: #335;
+    --inline-bg-color-highlight: #448;
+    --inline-bg-color-darklight: #3a3a77;
+}
+html {
+    font-family: "Raleway", sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6em;
+}
+code, pre {
+    font-family: "PT Mono", monospace;
+}
+code.inline {
+    padding: 3px;
+    background: var(--inline-bg-color);
+    border-radius: 5px;
+}
+a {
+    color: #9ff;
+}
+a:visited {
+    color: #7dd;
+}
+button {
+    padding: 3px;
+    background: var(--inline-bg-color);
+    border-radius: 5px;
+    border: 1px solid #5a7;
+    color: var(--text-color);
+    cursor: pointer;
+}
+button:hover {
+    background: var(--inline-bg-color-highlight);
+}
+button:active {
+    background: var(--inline-bg-color-darklight);
+}
