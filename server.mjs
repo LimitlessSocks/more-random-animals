@@ -13,8 +13,6 @@ const scratch = {}; // used for shell interaction
 const isLocal = process.argv[2] === "l";
 let __dirname = isLocal ? path.dirname(new URL(import.meta.url).pathname) : "/app";
 
-// res.redirect("/new-thing")
-
 if(__dirname[0] == '/' && isLocal) {
     __dirname = __dirname.slice(1);
 }
@@ -35,7 +33,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-const SERVE_DOMAINS = [ "gatr" ];
+const SERVE_DOMAINS = [ "gatr", "snek" ];
 
 const clientDir = __dirname + "/public";
 app.get("/:type/:file", function (req, res) {
@@ -79,15 +77,10 @@ for(let domain of SERVE_DOMAINS) {
         let name = rand.toString().padStart(IMAGE_NAME_WIDTH, "0") + ".jpg";
         res.setHeader("Content-Type", "application/json");
         res.end(JSON.stringify({
-            url: "https://more-random-animals.herokuapp.com/gatr/" + name,
+            url: "https://more-random-animals.herokuapp.com/" + domain + "/" + name,
         }));
     });
 }
-
-// app.post("/test", readBodyData, async function (body, req, res, next) {
-    // console.log("DATA:", body);
-    // res.send((Math.random() * 100 | 0).toString());
-// });
 
 app.use(express.static(
     clientDir,
