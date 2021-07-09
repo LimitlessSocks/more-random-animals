@@ -33,7 +33,7 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-const SERVE_DOMAINS = [ "gatr", "snek", "capy", "fish", "bear" ];
+const SERVE_DOMAINS = [ "gatr", "snek", "capy", "fish", "bear", "turtle" ];
 const clientDir = __dirname + "/public";
 
 const readBodyData = async function (req, res, next) {
