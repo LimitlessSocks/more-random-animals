@@ -1,7 +1,6 @@
 import express from "express";
 import fs from "fs";
 import path from "path";
-import bcrypt from "bcrypt";
 import repl from "repl";
 import { spawn } from "child_process";
 import bodyParser from "body-parser";
