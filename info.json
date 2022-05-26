@@ -40,5 +40,11 @@
         "animalName": "duck",
         "animalPlural": "ducks",
         "description": "Random picture of a duck"
+    },
+    {
+        "commandName": "durgon",
+        "animalName": "dragon",
+        "animalPlural": "dragons",
+        "description": "Random picture of a dragon"
     }
 ]

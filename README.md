@@ -10,3 +10,4 @@ All commands return a JSON parsable string of the form `{ url: "string" }`. Avai
 * `/bear` - Random picture of a bear
 * `/turtle` - Random picture of a turtle
 * `/duck` - Random picture of a duck
+* `/dragon/ - Random picture of a dragon
