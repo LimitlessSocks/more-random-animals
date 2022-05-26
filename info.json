@@ -1,0 +1,44 @@
+[
+    {
+        "commandName": "gatr",
+        "animalName": "alligator",
+        "animalPlural": "alligators",
+        "description": "Random picture of an alligator"
+    },
+    {
+        "commandName": "snek",
+        "animalName": "snake",
+        "animalPlural": "snakes",
+        "description": "Random picture of a beautiful snake"
+    },
+    {
+        "commandName": "capy",
+        "animalName": "capybara",
+        "animalPlural": "capybaras",
+        "description": "Random picture of a capybara"
+    },
+    {
+        "commandName": "fish",
+        "animalName": "fish",
+        "animalPlural": "fishes",
+        "description": "Random picture of a fish"
+    },
+    {
+        "commandName": "bear",
+        "animalName": "bear",
+        "animalPlural": "bears",
+        "description": "Random picture of a bear"
+    },
+    {
+        "commandName": "turtle",
+        "animalName": "turtle",
+        "animalPlural": "turtles",
+        "description": "Random picture of a turtle"
+    },
+    {
+        "commandName": "duck",
+        "animalName": "duck",
+        "animalPlural": "ducks",
+        "description": "Random picture of a duck"
+    }
+]

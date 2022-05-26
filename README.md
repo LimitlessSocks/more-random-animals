@@ -5,3 +5,7 @@ All commands return a JSON parsable string of the form `{ url: "string" }`. Avai
 * `/gatr` - Random picture of an alligator
 * `/snek` - Random picture of a beautiful snake
 * `/capy` - Random picture of a capybara
+* `/fish` - Random picture of a fish
+* `/bear` - Random picture of a bear
+* `/turtle` - Random picture of a turtle
+* `/duck` - Random picture of a duck

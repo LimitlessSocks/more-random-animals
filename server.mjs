@@ -32,10 +32,8 @@ app.use(express.urlencoded({
     extended: true
 }));
 
-const SERVE_DOMAINS = [
-    "gatr", "snek", "capy", "fish",
-    "bear", "turtle", "duck"
-];
+const DOMAIN_INFORMATION = JSON.parse(fs.readFileSync("./info.json"));
+const SERVE_DOMAINS = DOMAIN_INFORMATION.map(e => e.commandName);
 const clientDir = __dirname + "/public";
 
 const readBodyData = async function (req, res, next) {
@@ -75,6 +73,13 @@ for(let domain of SERVE_DOMAINS) {
         res.sendFile(__dirname + "/public/images/" + domain + "/" + file);
     });
 }
+
+app.get("/domains", function (req, res, next) {
+    res.setHeader("Content-Type", "application/json");
+    res.end(JSON.stringify({
+        domains: DOMAIN_INFORMATION,
+    }));
+});
 
 app.use(express.static(
     clientDir,
